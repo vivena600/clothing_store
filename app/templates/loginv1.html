@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в аккаунт</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Убедитесь, что внутренние отступы не влияют на ширину */
+        }
+        input[type="submit"],
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .register {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .register a {
+            color: #5cb85c;
+            text-decoration: none;
+        }
+        .form-section {
+            display: none; /* Скрываем форму регистрации по умолчанию */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="login-form">
+        <h2>Вход в аккаунт</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Имя пользователя" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+        <div class="register">
+            <p>Нет аккаунта? <a href="#" id="registerLink">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <div class="form-section" id="registrationSection">
+        <h2>Регистрация</h2>
+        <form action="#" method='get'>
+            <input type="text" id="regUsername" placeholder="Имя пользователя" name="registration_user_name"required>
+            <input type="password" id="regPassword" name="registration_user_password" placeholder="Пароль" required>
+            <input type="password" id="confirmPassword" name="confirm_registration_user_password" placeholder="Подтверждение пароля" required>
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+        <button id="backToLogin">Назад к входу</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Остановка отправки формы
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        alert(`Вход: ${username} с паролем ${password}`);
+    });
+
+    document.getElementById('registerLink').addEventListener('click', function() {
+        document.querySelector('.login-form').style.display = 'none'; // Скрываем форму входа
+        document.getElementById('registrationSection').style.display = 'block'; // Показываем форму регистрации
+    });
+
+    document.getElementById('backToLogin').addEventListener('click', function() {
+        document.getElementById('registrationSection').style.display = 'none'; // Скрываем форму регистрации
+        document.querySelector('.login-form').style.display = 'block'; // Показываем форму входа
+    });
+
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Остановка отправки формы
+
+        const regUsername = document.getElementById('regUsername').value;
+        const regPassword = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (regPassword !== confirmPassword) {
+            alert('Пароли не совпадают!');
+            return;
+        }
+
+        alert(`Регистрация успешна!\\nИмя пользователя: ${regUsername}\\nПароль: ${regPassword}`);
+    });
+</script>
+
+</body>
+</html>
