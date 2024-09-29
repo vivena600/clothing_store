@@ -1,5 +1,5 @@
 /.flaskenv
-/__pycache__
+*__pycache__
 /app.db
 /migrations
 /venv
