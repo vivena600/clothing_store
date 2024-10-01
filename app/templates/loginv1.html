@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход в аккаунт</title>
+    <title>Вход в аккаунт магазина одежды</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             display: flex;
-            justify-content: center;
+            flex-direction: column; /* Добавляем для расположения заголовка сверху */
             align-items: center;
             height: 100vh;
             margin: 0;
@@ -38,7 +38,7 @@
         }
         input[type="submit"],
         button {
-            background-color: #5cb85c;
+            background-color: #333;
             color: white;
             border: none;
             cursor: pointer;
@@ -52,61 +52,79 @@
             margin-top: 10px;
         }
         .register a {
-            color: #5cb85c;
+            color: #333;
             text-decoration: none;
         }
         .form-section {
             display: none; /* Скрываем форму регистрации по умолчанию */
         }
+        .header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        body {
+            background-image: url('https://img.lovepik.com/bg/20231216/an-image-of-a-clothing-store_2490513_wh860.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
+    <!-- Описание магазина -->
+    <div class="header">
+        <h1>Магазин одежды</h1>
+    </div>
+    
+    <div class="container">
+        <div class="login-form">
+            <h2>Вход в аккаунт</h2>
+            <form id="loginForm" action="#" method='get'>
+                <input type="text" id="username" name="login_username" placeholder="Имя пользователя" required>
+                <input type="password" id="password" name="login_password" placeholder="Пароль" required>
+                <input type="submit" value="Войти">
+            </form>
+            <div class="register">
+                <p>Нет аккаунта? <a href="#" id="registerLink">Зарегистрироваться</a></p>
+            </div>
+        </div>
 
-<div class="container">
-    <div class="login-form">
-        <h2>Вход в аккаунт</h2>
-        <form id="loginForm">
-            <input type="text" id="username" placeholder="Имя пользователя" required>
-            <input type="password" id="password" placeholder="Пароль" required>
-            <button type="submit">Войти</button>
-        </form>
-        <div class="register">
-            <p>Нет аккаунта? <a href="#" id="registerLink">Зарегистрироваться</a></p>
+        <div class="form-section" id="registrationSection">
+            <h2>Регистрация</h2>
+            <form action="#" method='get' id="registrationForm">
+                <input type="text" id="regUsername" placeholder="Имя пользователя" name="registration_user_name" required>
+                <input type="password" id="regPassword" name="registration_user_password" placeholder="Пароль" required>
+                <input type="password" id="confirmPassword" name="confirm_registration_user_password" placeholder="Подтверждение пароля" required>
+                <input type="submit" value="Зарегистрироваться">
+            </form>
+            <button id="backToLogin">Назад к входу</button>
         </div>
     </div>
 
-    <div class="form-section" id="registrationSection">
-        <h2>Регистрация</h2>
-        <form action="#" method='get'>
-            <input type="text" id="regUsername" placeholder="Имя пользователя" name="registration_user_name"required>
-            <input type="password" id="regPassword" name="registration_user_password" placeholder="Пароль" required>
-            <input type="password" id="confirmPassword" name="confirm_registration_user_password" placeholder="Подтверждение пароля" required>
-            <input type="submit" value="Зарегистрироваться">
-        </form>
-        <button id="backToLogin">Назад к входу</button>
-    </div>
-</div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            alert(`Вход: ${username} с паролем ${password}`);
+        });
 
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Остановка отправки формы
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-        alert(`Вход: ${username} с паролем ${password}`);
-    });
+        document.getElementById('registerLink').addEventListener('click', function() {
+            document.querySelector('.login-form').style.display = 'none'; // Скрываем форму входа
+            document.getElementById('registrationSection').style.display = 'block'; // Показываем форму регистрации
+        });
+        
 
-    document.getElementById('registerLink').addEventListener('click', function() {
-        document.querySelector('.login-form').style.display = 'none'; // Скрываем форму входа
-        document.getElementById('registrationSection').style.display = 'block'; // Показываем форму регистрации
-    });
+        document.getElementById('backToLogin').addEventListener('click', function() {
+            document.getElementById('registrationSection').style.display = 'none'; // Скрываем форму регистрации
+            document.querySelector('.login-form').style.display = 'block'; // Показываем форму входа
+        });
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
 
-    document.getElementById('backToLogin').addEventListener('click', function() {
-        document.getElementById('registrationSection').style.display = 'none'; // Скрываем форму регистрации
-        document.querySelector('.login-form').style.display = 'block'; // Показываем форму входа
-    });
-
-    document.getElementById('registrationForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Остановка отправки формы
 
         const regUsername = document.getElementById('regUsername').value;
         const regPassword = document.getElementById('regPassword').value;
@@ -114,12 +132,19 @@
 
         if (regPassword !== confirmPassword) {
             alert('Пароли не совпадают!');
+
             return;
         }
-
+        if (regPassword=='' || confirmPassword =='') {
+            alert('Пароль или потверждение пустое!');
+            return;
+        }
+        if (regPassword < 8) {
+            alert('Пароль слишком короткий');
+            return;
+        }
         alert(`Регистрация успешна!\\nИмя пользователя: ${regUsername}\\nПароль: ${regPassword}`);
     });
-</script>
-
+    </script>
 </body>
 </html>
