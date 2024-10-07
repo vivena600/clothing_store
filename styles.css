@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#catalog {
+    padding: 20px;
+}
+
+#product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); /* Автоматическая настройка количества столбцов */
+    gap: 30px; /* Отступы между карточками */
+}
+
+
+.product {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    width: 305px; /* Установите фиксированную ширину для карточек */
+    margin: auto; /* Центрирование карточек */
+}
+
+.product img {
+    width: 100%;
+    max-height: 300px;
+    width: auto;
+    border-radius: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 3px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Modal styles */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    width: 50%;
+    max-height: 60vw;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+#modal-img {
+    width: auto; /* Ширина по 100% от родительского элемента */
+    height: 100%;
+    max-height: 40vw; /* Автоматическая высота для сохранения пропорций */
+}
+
+
+.close {
+    color: rgb(255, 255, 255);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider img.icon {
+    cursor: pointer;
+    width: 40px; /* Размер иконки, можно менять */
+    height: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#prev-btn {
+    left: 10px;
+}
+
+#next-btn {
+    right: 10px;
+}
+
+.slider img#modal-img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* "Add to Cart" button styling */
+#add-to-cart-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#add-to-cart-btn:hover {
+    background-color: #333;
+}
