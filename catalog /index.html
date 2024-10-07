@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comfit - Women's Clothing Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <!--
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Подключаем Font Awesome -->
+</head>
+<body>
+    <header>
+        <h1>Welcome to Comfit</h1>
+        <nav>
+            <ul>
+                <li><a href="#catalog">Catalog</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="catalog">
+        <h2>Our Catalog</h2>
+        <div id="product-list"></div>
+    </section>
+
+    <!-- Modal Window for product details -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="slider">
+                <img id="prev-btn" class="icon" src = "img/nazad.png" alt = "Previus"></img> <!-- Иконка влево -->
+                <img id="modal-img" src="" alt="Product Image">
+                <img id="next-btn" class="icon" src = "img/vpered.png" alt = "Next"></img> <!-- Иконка вправо -->
+            </div>
+            <h3 id="modal-title"></h3>
+            <p id="modal-price"></p>
+            <button id="add-to-cart-btn">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comfit. All rights reserved.</p>
+    </footer>
+
+    <script src="constatnt/catalog.js"></script> <!-- Подключаем catalog.js -->
+    <script src="script.js"></script> <!-- Подключаем основной скрипт -->
+</body>
+</html>
